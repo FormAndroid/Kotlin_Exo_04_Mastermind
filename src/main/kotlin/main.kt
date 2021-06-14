@@ -1,7 +1,6 @@
-import java.util.regex.Pattern
-
 fun main(args: Array<String>) {
     val listMystere: List<Int> = generateMystere()
+    println("-> ${listMystere.joinToString(" > ")}") //TODO Remove this ;)
 
     var isWin: Boolean = false
     val maxTentative: Int = 12
@@ -39,12 +38,13 @@ fun getTentativeUser(nbTentative: Int): List<Int> {
     val regexNb = Regex("^[0-9](\\s[0-9]){3}$")
 
     var saisie: String
-    print("Entrer la proposition $nbTentative (Format: X X X X) : \n> ")
+    println("Entrer la proposition $nbTentative (Format: X X X X) :")
     do {
+        print("> ")
         saisie = readLine()!!.trim()
     } while (!regexNb.matches(saisie))
 
-    return saisie.split(Pattern.compile("\\s")).map() { it.toInt() }
+    return saisie.split(Regex("\\s")).map() { it.toInt() }
 }
 
 fun checkWellPlaced(listMystere: List<Int>, listUser: List<Int>) : Int {
